@@ -7,7 +7,7 @@ import torch
 import torch.nn as nn
 from torchvision import models
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("train")
 
 SUPPORTED_BACKBONES = [
     "resnet18", "resnet34", "resnet50",
@@ -18,7 +18,7 @@ SUPPORTED_BACKBONES = [
 ]
 
 
-def build_model(backbone_name, output_dim=8):
+def build_model(backbone_name, output_dim=8, backbone_weight_path=None):
     if backbone_name not in SUPPORTED_BACKBONES:
         raise ValueError(
             f"Unsupported backbone: '{backbone_name}'.\n"
@@ -27,6 +27,9 @@ def build_model(backbone_name, output_dim=8):
 
     model_fn = getattr(models, backbone_name)
     model = model_fn(weights=None)
+
+    if backbone_weight_path is not None:
+        load_backbone_weights(model, backbone_weight_path)
 
     # Replace head and extract backbone / head references
     if "resnet" in backbone_name or "wide_resnet" in backbone_name:
@@ -66,7 +69,7 @@ def load_backbone_weights(model, weight_path):
     state_dict = torch.load(weight_path, map_location="cpu", weights_only=True)
     missing, unexpected = model.load_state_dict(state_dict, strict=False)
 
-    logger.info(f"> load_backbone_weights: {weight_path}")
+    logger.info(f"> load_backbone_weights: {os.path.basename(weight_path)}")
     logger.debug(f"  missing keys    : {missing}")
     logger.debug(f"  unexpected keys : {unexpected}")
     return model
@@ -77,7 +80,7 @@ def load_model_weights(model, weight_path):
     state_dict = torch.load(weight_path, map_location="cpu", weights_only=True)
     model.load_state_dict(state_dict, strict=True)
 
-    logger.info(f"> load_model_weights: {weight_path}")
+    logger.info(f"> load_model_weights: {os.path.basename(weight_path)}")
     return model
 
 
@@ -85,4 +88,4 @@ def save_model_weights(model, weight_path):
     os.makedirs(os.path.dirname(weight_path), exist_ok=True)
     torch.save(model.state_dict(), weight_path)
 
-    logger.info(f"> save_model_weights: {weight_path}")
+    logger.info(f"> save_model_weights: {os.path.basename(weight_path)}")
