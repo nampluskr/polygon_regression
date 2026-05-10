@@ -1,0 +1,63 @@
+# configs/paths.yaml
+
+# Root directories
+dataset_dir:    /mnt/d/deep_learning/datasets
+backbone_dir:   /mnt/d/deep_learning/backbones
+root_dir:       /mnt/d/github/quad_regression
+
+output_dir:     ${root_dir}/outputs
+annotation_dir: ${root_dir}/annotations
+
+# Output subdirectories
+pretrain_dir:     ${output_dir}/pretrain
+finetune_dir:     ${output_dir}/finetune
+finetune_archive: ${finetune_dir}/archive
+
+# Dataset image directories
+datasets:
+  oxford_pets: ${dataset_dir}/oxford_pets
+  midv2020:    ${dataset_dir}/midv2020_processed
+  smartdoc:    ${dataset_dir}/smart_doc_extracted
+  pmd:         ${dataset_dir}/pmd
+
+images:
+  oxford_pets: ${dataset_dir}/oxford_pets/images
+  midv2020:    ${dataset_dir}/midv2020_processed/images
+  smartdoc:    ${dataset_dir}/smart_doc_extracted/images
+  pmd:         ${dataset_dir}/pmd/images
+
+# Dataset annotation CSV
+annotations:
+  oxford_pets: ${annotation_dir}/oxford_pets
+  midv2020:    ${annotation_dir}/midv2020
+  smartdoc:    ${annotation_dir}/smartdoc
+  pmd:         ${annotation_dir}/pmd
+
+train_annotations:
+  oxford_pets: ${annotation_dir}/oxford_pets/annotations-oxford_pets-train.csv
+  midv2020:    ${annotation_dir}/midv2020/annotations-midv2020-train.csv
+  smartdoc:    ${annotation_dir}/smartdoc/annotations-smartdoc-train.csv
+  pmd:         ${annotation_dir}/pmd/annotations-pmd-train.csv
+
+valid_annotations:
+  oxford_pets: ${annotation_dir}/oxford_pets/annotations-oxford_pets-valid.csv
+  midv2020:    ${annotation_dir}/midv2020/annotations-midv2020-valid.csv
+  smartdoc:    ${annotation_dir}/smartdoc/annotations-smartdoc-valid.csv
+  pmd:         ${annotation_dir}/pmd/annotations-pmd-valid.csv
+
+# Backbone weights
+backbones:
+  resnet18:           ${backbone_dir}/resnet18-f37072fd.pth
+  resnet34:           ${backbone_dir}/resnet34-b627a593.pth
+  resnet50:           ${backbone_dir}/resnet50-0676ba61.pth
+  wide_resnet50_2:    ${backbone_dir}/wide_resnet50_2-95faca4d.pth
+  wide_resnet101_2:   ${backbone_dir}/wide_resnet101_2-32ee1156.pth
+  efficientnet_b0:    ${backbone_dir}/efficientnet_b0_rwightman-7f5810bc.pth
+  efficientnet_b5:    ${backbone_dir}/efficientnet_b5_lukemelas-1a07897c.pth
+  vgg16:              ${backbone_dir}/vgg16-397923af.pth
+  vgg19:              ${backbone_dir}/vgg19-dcbb9e9d.pth
+  vgg16_bn:           ${backbone_dir}/vgg16_bn-6c64b313.pth
+  vgg19_bn:           ${backbone_dir}/vgg19_bn-c79401a0.pth
+  mobilenet_v2:       ${backbone_dir}/mobilenet_v2-7ebf99e0.pth
+  mobilenet_v3_large: ${backbone_dir}/mobilenet_v3_large-8738ca79.pth
+  mobilenet_v3_small: ${backbone_dir}/mobilenet_v3_small-047dcff4.pth

@@ -1,0 +1,55 @@
+# quad_regression/.gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.eggs/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# VS Code
+.vscode/
+
+# Outputs (model weights, logs, results)
+outputs/
+
+# Dataset / Backbone weights (large files)
+data/
+datasets/
+backbones/
+
+# Environment variables
+.env
+
+# OS
+.DS_Store
+Thumbs.db
+
+# YAML secrets (local path overrides)
+configs/local_*.yaml
+
+# Experimental scripts (excluded)
+experiments/explore/
+experiments/debug/
+experiments/prototype/
+
+# Analysis results (tracked)
+# experiments/analysis/ 는 제외하지 않음
+
+# pytest cache
+.pytest_cache/
+tests/__pycache__/
+
