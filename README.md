@@ -1,1 +1,1 @@
-# polygon_regression
+# quad_regression
